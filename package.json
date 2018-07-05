@@ -1,0 +1,20 @@
+{
+  "name": "travis-test",
+  "version": "1.0.0",
+  "description": "Experiment with xpm runs on Travis",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xpack/travis-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xpack/travis-test/issues"
+  },
+  "homepage": "https://github.com/xpack/travis-test#readme",
+  "xpack": {}
+}
