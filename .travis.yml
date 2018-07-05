@@ -31,9 +31,10 @@ notifications:
     on_failure: always # default: always
 
 install:
-  npm install --global xpm
-  xpm install
+  - npm install --global xpm
+  - xpm --version
+  - xpm install
 
 script:
-  xpm run test
+  - xpm run test
 
