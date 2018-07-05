@@ -44,13 +44,14 @@ notifications:
 cache:
   directories:
   - $HOME/.nvm
+  - $HOME/opt
 
 before_install:
   - npm install --global xpm
   - xpm --version
 
 install:
-  - xpm install
+  - xpm install -v
   - g++ --version
   - g++-8 --version
 
