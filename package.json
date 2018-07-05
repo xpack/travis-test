@@ -16,5 +16,9 @@
     "url": "https://github.com/xpack/travis-test/issues"
   },
   "homepage": "https://github.com/xpack/travis-test#readme",
+  "devDependencies": {
+    "xmake": "~0.3.10",
+    "@gnu-mcu-eclipse/arm-none-eabi-gcc": "7.2.1-1.1.5"
+   },
   "xpack": {}
 }
