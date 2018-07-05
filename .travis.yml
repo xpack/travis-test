@@ -30,6 +30,11 @@ notifications:
     on_success: always # default: change
     on_failure: always # default: always
 
+# https://docs.travis-ci.com/user/caching/
+cache:
+  directories:
+  - $HOME/.nvm
+  
 install:
   - npm install --global xpm
   - xpm --version
