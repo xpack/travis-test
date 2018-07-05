@@ -34,11 +34,12 @@ notifications:
 cache:
   directories:
   - $HOME/.nvm
-  
+
 install:
   - npm install --global xpm
   - xpm --version
   - xpm install
+  - gcc --version
 
 script:
   - xpm run test
