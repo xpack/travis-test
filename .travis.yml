@@ -19,6 +19,16 @@ language: node_js
 node_js:
   - "node" 
 
+# Ubuntu 14.04 ships with GCC 4.8.2, to use newer versions
+# explictly install them.
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-7
+      - g++-8
+
 # https://docs.travis-ci.com/user/customizing-the-build/#Git-Clone-Depth
 git:
   # Limit the clone depth; default is 50.
@@ -35,9 +45,11 @@ cache:
   directories:
   - $HOME/.nvm
 
-install:
+before_install:
   - npm install --global xpm
   - xpm --version
+
+install:
   - xpm install
   - gcc --version
 
