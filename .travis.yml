@@ -24,10 +24,10 @@ node_js:
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+#       - ubuntu-toolchain-r-test
     packages:
-#      - g++-7
-      - g++-8
+#       - g++-7
+#       - g++-8
 
 # https://docs.travis-ci.com/user/customizing-the-build/#Git-Clone-Depth
 git:
@@ -52,8 +52,8 @@ before_install:
 
 install:
   - xpm install -v
-  - g++ --version
-  - g++-8 --version
+#   - g++ --version
+#   - g++-8 --version
 
 script:
   - xpm run test
