@@ -1,0 +1,174 @@
+{
+  "version": "0.2.0",
+  "addSourceFolders": [
+    ".",
+    "../../src"
+  ],
+  "addIncludeFolders": [
+    ".",
+    "../../include"
+  ],
+  "generator": "make",
+  "commands": {
+    "build": [ "make" ]
+  },
+  "artefact": {
+    "type": "executable",
+    "name": "${test.name}",
+    "outputPrefix": "",
+    "outputSuffix": "",
+    "extension": ""
+  },
+  "targets": {
+    "generic-cm3": {
+      "options": {
+        "addArchitecture": [
+          "-mcpu=cortex-m3"
+        ]
+      }
+    }
+  },
+  "toolchains": {
+    "gcc": {
+      "commandPrefix": "",
+      "commandSuffix": "",
+      "descriptionPrefix": "GNU",
+      "objectExtension": "o",
+      "makeObjectsVariable": "OBJS",
+  
+      "tools": {
+        "c": {
+          "commandName": "gcc",
+          "options": "-c",
+          "deps": "-MMD -MP -MF\"$(@:%.o=%.d)\" -MT\"$(@)\"",
+          "outputFlag": "-o",
+          "output": "\"$@\"",
+          "inputs": "\"$<\"",
+          "fileExtensions": {
+            "c": {
+              "prefix": "C"
+            }
+          }
+        },
+        "cpp": {
+          "commandName": "g++",
+          "options": "-c",
+          "deps": "-MMD -MP -MF\"$(@:%.o=%.d)\" -MT\"$(@)\"",
+          "outputFlag": "-o",
+          "output": "\"$@\"",
+          "inputs": "\"$<\"",
+          "fileExtensions": {
+            "cpp": {
+              "prefix": "CPP"
+            },
+            "C": {
+              "prefix": "C_UPPER"
+            },
+            "c++": {
+              "prefix": "C++"
+            },
+            "cxx": {
+              "prefix": "CXX"
+            },
+            "cc": {
+              "prefix": "CC"
+            }
+          }
+        },
+        "as": {
+          "commandName": "gcc",
+          "options": "-x assembler-with-cpp -c",
+          "deps": "-MMD -MP -MF\"$(@:%.o=%.d)\" -MT\"$(@)\"",
+          "outputFlag": "-o",
+          "output": "\"$@\"",
+          "inputs": "\"$<\"",
+          "fileExtensions": {
+            "S": {
+              "prefix": "S_UPPER"
+            },
+            "asm": {
+              "prefix": "ASM"
+            }
+          }
+        },
+        "cLinker": {
+          "commandName": "gcc",
+          "outputFlag": "-o",
+          "output": "\"$@\""
+        },
+        "cppLinker": {
+          "commandName": "g++",
+          "outputFlag": "-o",
+          "output": "\"$@\""
+        }
+      }
+    },
+    "arm-none-eabi-gcc": {
+      "parent": "gcc",
+      "commandPrefix": "arm-none-eabi-",
+      "tools": {
+        "c": {
+          "addOptimizations": [ 
+            "-std=gnu11" 
+          ]
+        },
+        "cpp": {
+          "addOptimizations": [ 
+            "-std=gnu++1y" 
+          ]
+        }
+      }
+    }
+  },
+  "profiles": {
+    "debug": {
+      "addSymbols": [
+        "DEBUG"
+      ],
+      "options": {
+        "addOptimizations": [
+          "-O0"
+        ],
+        "addWarnings": [
+          "-Wall"
+        ],
+        "addDebugging": [
+          "-g3"
+        ]
+      }
+    },
+    "release": {
+      "addSymbols": [
+        "NDEBUG"
+      ],
+      "options": {
+        "addOptimizations": [
+          "-Os"
+        ],
+        "addWarnings": [
+          "-Wall"
+        ],
+        "addDebugging": [
+          "-g3"
+        ]
+      }
+    },
+    "trace": {
+      "addSymbols": [
+        "TRACE"
+      ]
+    }
+  },
+  "configurations": {
+    "cm3-gcc-arm-debug": {
+      "target": "generic-cm3",
+      "toolchain": "arm-none-eabi-gcc",
+      "profiles": [ "debug", "trace" ]
+    },
+    "cm3-gcc-arm-release": {
+      "target": "generic-cm3",
+      "toolchain": "arm-none-eabi-gcc",
+      "profiles": [ "release" ]
+    }
+  }
+}
